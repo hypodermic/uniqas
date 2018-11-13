@@ -20,31 +20,31 @@
   </div>
   <div>
     <label>
-      <span>Apellido</span>
+      <span id="inputTitle">Apellido</span>
       <input type="text" size="50" name="last_name" data-culqi="card[last_name]" id="card[last_name]">
     </label>
   </div>
   <div>
     <label>
-      <span>Direccion</span>
-      <input type="text" size="80" name="address" data-culqi="card[address]" id="card[address]">
+      <span id="inputTitle">Direccion</span>
+      <input type="text" size="50" name="address" data-culqi="card[address]" id="card[address]">
     </label>
   </div>
   <div>
     <label>
-      <span>Ciudad</span></br>
+      <span id="inputTitle">Ciudad</span></br>
       <input type="text" size="30" name="address_city" data-culqi="card[address_city]" id="card[address_city]">
     </label>
   </div>
   <div>
     <label>
-      <span>Telefono</span></br>
+      <span id="inputTitle">Telefono</span></br>
       <input type="text" size="15" name="phone_number" data-culqi="card[phone_number]" id="card[phone_number]">
     </label>
   </div>
   <div>
     <label>
-      <span>Correo Electrónico</span>
+      <span id="inputTitle">Correo Electrónico</span>
       <input type="text" size="50" data-culqi="card[email]" id="card[email]">
     </label>
   </div>
@@ -63,9 +63,9 @@
   <div>
     <label>
       <span>Fecha expiración (MM/YYYY)</span>
-      <input size="2" data-culqi="card[exp_month]" id="card[exp_month]">
+      <input type="text" size="2" data-culqi="card[exp_month]" id="card[exp_month]">
       <span>/</span>
-      <input size="4" data-culqi="card[exp_year]" id="card[exp_year]">
+      <input type="text" size="4" data-culqi="card[exp_year]" id="card[exp_year]">
     </label>
   </div>
   <div>
@@ -113,9 +113,11 @@ function toggleDiv() {
 <script>
 $('#culqi-card-form').on('submit', function(e) {
       //Crea el objeto Token con Culqi JS
+	  
       Culqi.createToken();
       e.preventDefault();
 	  toggleDiv();
+	  
 	  //send message to fill every box if pressed without filling everything
   });
 </script>

@@ -137,12 +137,13 @@ footer ul li a{
 	margin-bottom:20px;
 	margin-top:70px;
 	padding:100px 40px 20px 40px;
-	text-align:center;
+	
 }
 #comprar h1, h2{
 	color:purple;
 	font-weight: bold;
 	text-shadow: 2px 2px white;
+	text-align:center;
 	
 }
 #imgcomprar{
@@ -189,4 +190,12 @@ footer ul li a{
 }
 #wait{
 	opacity: 0;
+}
+input[type=text], select {
+	padding: 5px 10px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid purple;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
