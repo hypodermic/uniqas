@@ -188,6 +188,9 @@ footer ul li a{
 #successMessage{
 	opacity: 0;
 }
+#errorMessage{
+	opacity: 0;
+}
 #wait{
 	opacity: 0;
 }
@@ -198,4 +201,10 @@ input[type=text], select {
     border: 1px solid purple;
     border-radius: 4px;
     box-sizing: border-box;
+
+}
+#inputTitle{
+	color:purple;
+	text-shadow: 2px 2px white;
+	font: normal normal bold 17px Quicksand;
 }

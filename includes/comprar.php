@@ -1,71 +1,71 @@
 <div id="comprar">
 <div class="row">
-<div class="col-1"></div>
-<div class="col-5">
+
+<div class="col-6">
 <h1>pack de</h1>
 <h2>3 bases y 5 toallitas</h2>
 <img id="imgcomprar" src="images/3pack.png" alt="pic3pack">
 <h2>+ envio a domicilio</h2>
 <h1>60 soles</h1>
 </div>
-<div class="col-5">
+<div class="col-6">
 <div id="myDIV">
 <h1>completa todos los datos</h1></br>
 <form method="POST" id="culqi-card-form">
   <div>
     <label>
-      <span>Nombre</span>
-      <input type="text" size="50" name="first_name" data-culqi="card[first_name]" id="card[first_name]">
+      <span id="inputTitle">Nombre</span></br>
+      <input type="text" size="50" name="first_name" data-culqi="card[first_name]" id="card[first_name]" required>
     </label>
   </div>
   <div>
     <label>
-      <span id="inputTitle">Apellido</span>
-      <input type="text" size="50" name="last_name" data-culqi="card[last_name]" id="card[last_name]">
+      <span id="inputTitle">Apellido</span></br>
+      <input type="text" size="50" name="last_name" data-culqi="card[last_name]" id="card[last_name]" required>
     </label>
   </div>
   <div>
     <label>
-      <span id="inputTitle">Direccion</span>
-      <input type="text" size="50" name="address" data-culqi="card[address]" id="card[address]">
+      <span id="inputTitle">Direccion</span></br>
+      <input type="text" size="50" name="address" data-culqi="card[address]" id="card[address]" required>
     </label>
   </div>
   <div>
     <label>
       <span id="inputTitle">Ciudad</span></br>
-      <input type="text" size="30" name="address_city" data-culqi="card[address_city]" id="card[address_city]">
+      <input type="text" size="30" name="address_city" data-culqi="card[address_city]" id="card[address_city]" required>
     </label>
   </div>
   <div>
     <label>
       <span id="inputTitle">Telefono</span></br>
-      <input type="text" size="15" name="phone_number" data-culqi="card[phone_number]" id="card[phone_number]">
+      <input type="text" size="15" name="phone_number" data-culqi="card[phone_number]" id="card[phone_number]" required>
     </label>
   </div>
   <div>
     <label>
-      <span id="inputTitle">Correo Electrónico</span>
-      <input type="text" size="50" data-culqi="card[email]" id="card[email]">
+      <span id="inputTitle">Correo Electrónico</span></br>
+      <input type="text" size="50" data-culqi="card[email]" id="card[email]" required>
     </label>
   </div>
   <div>
     <label>
-      <span>Número de tarjeta</span>
-      <input type="text" size="20" data-culqi="card[number]" id="card[number]">
+      <span id="inputTitle">Número de tarjeta</span>
+      <input type="text" size="20" data-culqi="card[number]" id="card[number]" required>
     </label>
   </div>
   <div>
     <label>
-      <span>CVV</span>
-      <input type="text" size="4" data-culqi="card[cvv]" id="card[cvv]">
+      <span id="inputTitle">CVV</span>
+      <input type="text" size="4" data-culqi="card[cvv]" id="card[cvv]" required>
     </label>
   </div>
   <div>
     <label>
-      <span>Fecha expiración (MM/YYYY)</span>
-      <input type="text" size="2" data-culqi="card[exp_month]" id="card[exp_month]">
-      <span>/</span>
-      <input type="text" size="4" data-culqi="card[exp_year]" id="card[exp_year]">
+      <span id="inputTitle">Fecha expiración (MM/YYYY)</span>
+      <input type="text" size="2" data-culqi="card[exp_month]" id="card[exp_month]" required>
+      <span id="inputTitle">/</span>
+      <input type="text" size="4" data-culqi="card[exp_year]" id="card[exp_year]" required>
     </label>
   </div>
   <div>
@@ -75,8 +75,9 @@
 </div>
 <div id="wait"><h1>espere por favor</h1></div>
 <div id="successMessage"><h1>su compra fue realizada con exito, se le enviara un email</h1></div>
+<div id="errorMessage"><h1>hubo un problema, por favor refresque browser e intente de nuevo</h1></div>
 </div>
-<div class="col-1"></div>
+
 </div>
 </div>
 
@@ -85,6 +86,16 @@ function addMessage() {
 	var y = document.getElementById("wait");
 	y.style.opacity = 0;
 	var x = document.getElementById("successMessage");
+    x.style.opacity = 1;
+	var z = document.getElementById("comprar");
+	z.style.cursor = "auto";
+}
+</script>
+<script>
+function errMessage() {
+	var y = document.getElementById("wait");
+	y.style.opacity = 0;
+	var x = document.getElementById("errorMessage");
     x.style.opacity = 1;
 	var z = document.getElementById("comprar");
 	z.style.cursor = "auto";
@@ -113,11 +124,9 @@ function toggleDiv() {
 <script>
 $('#culqi-card-form').on('submit', function(e) {
       //Crea el objeto Token con Culqi JS
-	  
       Culqi.createToken();
       e.preventDefault();
 	  toggleDiv();
-	  
 	  //send message to fill every box if pressed without filling everything
   });
 </script>
@@ -177,13 +186,15 @@ function culqi() {
 			  
 		  },
 		  error: function(error_data){
+			  //if object:error dsplay..
 			  console.log(error_data);
 			  //add message if transaction fails
 		  }
 	  })
   } else { // ¡Hubo algún problema!
       // Mostramos JSON de objeto error en consola
-      console.log(Culqi.error);
+      errMessage();
+	  console.log(Culqi.error);
       alert(Culqi.error.user_message);
   }
 };
