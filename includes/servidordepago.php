@@ -2,6 +2,8 @@
 
 try {
   // Usando Composer (o puedes incluir las dependencias manualmente)
+  //require 'request/library/Requests.php';
+ // Requests::register_autoloader();
   require 'culqi/vendor/autoload.php';
   require 'culqi/lib/culqi.php';
 
@@ -34,7 +36,6 @@ try {
  
   // Respuesta
   echo json_encode($charge);
-
 } catch (Exception $e) {
   echo json_encode($e->getMessage());
  

@@ -5,8 +5,8 @@
 <h1>pack de</h1>
 <h2>3 bases y 5 toallitas</h2>
 <img id="imgcomprar" src="images/3pack.png" alt="pic3pack">
-<h2>+ envio a domicilio</h2>
-<h1>60 soles</h1>
+<h2>+ envío a domicilio</h2>
+<h1>S/60 soles</h1>
 </div>
 <div class="col-6">
 <div id="myDIV">
@@ -26,60 +26,53 @@
   </div>
   <div>
     <label>
-      <span id="inputTitle">Direccion</span></br>
+      <span id="inputTitle">Dirección</span></br>
       <input type="text" size="50" name="address" data-culqi="card[address]" id="card[address]" required>
     </label>
   </div>
   <div>
     <label>
-      <span id="inputTitle">Ciudad</span></br>
+      <span id="inputTitle">Distrito</span></br>
       <input type="text" size="30" name="address_city" data-culqi="card[address_city]" id="card[address_city]" required>
     </label>
   </div>
   <div>
     <label>
-      <span id="inputTitle">Telefono</span></br>
+      <span id="inputTitle">Provincia</span></br>
+      <input type="text" name="provincia" value="Lima" readonly="readonly">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span id="inputTitle">Departamento</span></br>
+      <input type="text" name="departamento" value="Lima" readonly="readonly">
+    </label>
+  </div>
+  <div>
+    <label>
+      <span id="inputTitle">Teléfono</span></br>
       <input type="text" size="15" name="phone_number" data-culqi="card[phone_number]" id="card[phone_number]" required>
     </label>
   </div>
-  <div>
-    <label>
-      <span id="inputTitle">Correo Electrónico</span></br>
-      <input type="text" size="50" data-culqi="card[email]" id="card[email]" required>
-    </label>
-  </div>
-  <div>
-    <label>
-      <span id="inputTitle">Número de tarjeta</span>
-      <input type="text" size="20" data-culqi="card[number]" id="card[number]" required>
-    </label>
-  </div>
-  <div>
-    <label>
-      <span id="inputTitle">CVV</span>
-      <input type="text" size="4" data-culqi="card[cvv]" id="card[cvv]" required>
-    </label>
-  </div>
-  <div>
-    <label>
-      <span id="inputTitle">Fecha expiración (MM/YYYY)</span>
-      <input type="text" size="2" data-culqi="card[exp_month]" id="card[exp_month]" required>
-      <span id="inputTitle">/</span>
-      <input type="text" size="4" data-culqi="card[exp_year]" id="card[exp_year]" required>
-    </label>
-  </div>
+  
   <div>
   <button class="button" type="submit" name="enviar">comprar</button>
   </div>
 </form>
 </div>
 <div id="wait"><h1>espere por favor</h1></div>
-<div id="successMessage"><h1>su compra fue realizada con exito, se le enviara un email</h1></div>
-<div id="errorMessage"><h1>hubo un problema, por favor refresque browser e intente de nuevo</h1></div>
+<div id="successMessage"><h1></h1></div>
+<div id="errorMessage"></div>
 </div>
 
 </div>
+<p>*El pack incluye todo lo que muestra la imagen más el envío a domicilio en Lima por Olva Courier. 
+Si deseas hacer un pedido llena tus datos y haz click en ’comprar’, aparacerá un formulario para los datos de tu tarjeta.
+Una vez realizada la compra se enviará un email con información acerca de tu pedido. Gracias.</p>
 </div>
+
+
+
 
 <script>
 function addMessage() {
@@ -124,10 +117,18 @@ function toggleDiv() {
 <script>
 $('#culqi-card-form').on('submit', function(e) {
       //Crea el objeto Token con Culqi JS
-      Culqi.createToken();
-      e.preventDefault();
-	  toggleDiv();
+	  Culqi.open();
+	   e.preventDefault();
+	   
 	  //send message to fill every box if pressed without filling everything
+  });
+</script>
+<script>
+  Culqi.settings({
+    title: 'uniqas store',
+    currency: 'PEN',
+    description: 'pack y envio',
+    amount: 6000
   });
 </script>
 <!--
@@ -141,14 +142,7 @@ $('#culqi-card-form').on('submit', function(e) {
 </script>
 
 </div>
-<script>
-  Culqi.settings({
-    title: 'uniqas store',
-    currency: 'PEN',
-    description: 'pack y envio',
-    amount: 6000
-  });
-</script>
+
 <script>
 $('#buyButton').on('click', function(e) {
     // Abre el formulario con la configuración en Culqi.settings
@@ -160,6 +154,7 @@ $('#buyButton').on('click', function(e) {
 <script>
 
 function culqi() {
+	toggleDiv();
   if (Culqi.token) { // ¡Objeto Token creado exitosamente!
       var token = Culqi.token.id;
 	  var email = Culqi.token.email;
@@ -181,13 +176,30 @@ function culqi() {
 		  },
 		  dataType: 'JSON',
 		  success: function(data){
-			  addMessage();
-			  console.log(data);
+			  //if ( == true){
+			  //addMessage();
 			  
+			 if (data.object == "charge"){
+			 console.log(data.outcome.user_message);
+			 addMessage();
+			 $('#successMessage').html(data.outcome.user_message);
+			  } else {
+				  var result = JSON.parse(data);
+				  console.log(result.user_message);
+				  errMessage();
+				  $('#errorMessage').html(result.user_message);
+			  }
+			 
 		  },
 		  error: function(error_data){
 			  //if object:error dsplay..
-			  console.log(error_data);
+			 // if (data.object == "error"){
+			  //errMessage();
+			  //console.log(error_data);
+			  //alert(error_data
+			  if (error_data.object == "error") {
+				  console.log(error_data.user_message);
+			  }
 			  //add message if transaction fails
 		  }
 	  })
