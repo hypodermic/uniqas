@@ -61,7 +61,7 @@
 </form>
 </div>
 <div id="wait"><h1>espere por favor</h1></div>
-<div id="successMessage"><h1></h1></div>
+<div id="successMessage"></div>
 <div id="errorMessage"></div>
 </div>
 
@@ -109,48 +109,21 @@ function toggleDiv() {
 }
 </script>
 <script>
-		Culqi.publicKey = 'pk_test_oJmtho5pPAdOttOk';
-		<!--new add 10/30-->
-		Culqi.init();
-	</script>
+	Culqi.publicKey = 'pk_test_oJmtho5pPAdOttOk';
+		
+	Culqi.settings({
+		title: 'somos uniqas',
+		currency: 'PEN',
+		description: 'pack y envío',
+		amount: 6000
+	});
 
-<script>
-$('#culqi-card-form').on('submit', function(e) {
+	$('#culqi-card-form').on('submit', function(e) {
       //Crea el objeto Token con Culqi JS
 	  Culqi.open();
-	   e.preventDefault();
-	   
-	  //send message to fill every box if pressed without filling everything
-  });
+	  e.preventDefault();
+	});
 </script>
-<script>
-  Culqi.settings({
-    title: 'uniqas store',
-    currency: 'PEN',
-    description: 'pack y envio',
-    amount: 6000
-  });
-</script>
-<!--
-<a class="button" id="buyButton">comprar</a>
-<script>
-  $('#buyButton').on('click', function(e) {
-      // Crea el objeto Token con Culqi JS
-      Culqi.createToken();
-      e.preventDefault();
-  });
-</script>
-
-</div>
-
-<script>
-$('#buyButton').on('click', function(e) {
-    // Abre el formulario con la configuración en Culqi.settings
-    Culqi.open();
-    e.preventDefault();
-});
-</script>
--->
 <script>
 
 function culqi() {
@@ -171,14 +144,10 @@ function culqi() {
 			  address: $('input[name="address"]').val(),
 			  city: $('input[name="address_city"]').val(),
 			  country: 'PE',
-			  phone: $('input[name="phone_number"]').val()
-			  
-		  },
+			  phone: $('input[name="phone_number"]').val(),  
+			},
 		  dataType: 'JSON',
 		  success: function(data){
-			  //if ( == true){
-			  //addMessage();
-			  
 			 if (data.object == "charge"){
 			 console.log(data.outcome.user_message);
 			 addMessage();
@@ -188,22 +157,13 @@ function culqi() {
 				  console.log(result.user_message);
 				  errMessage();
 				  $('#errorMessage').html(result.user_message);
-			  }
-			 
-		  },
+				} 
+			},
 		  error: function(error_data){
-			  //if object:error dsplay..
-			 // if (data.object == "error"){
-			  //errMessage();
-			  //console.log(error_data);
-			  //alert(error_data
-			  if (error_data.object == "error") {
-				  console.log(error_data.user_message);
-			  }
-			  //add message if transaction fails
-		  }
-	  })
-  } else { // ¡Hubo algún problema!
+			 errMessage();
+			}
+		})
+	} else { // ¡Hubo algún problema!
       // Mostramos JSON de objeto error en consola
       errMessage();
 	  console.log(Culqi.error);
