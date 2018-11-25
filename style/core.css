@@ -41,7 +41,7 @@ header img{
     width: 30%;
 }
 body{
-	background: pink;
+	background: #FED7D8;
 	font-family: 'Quicksand', sans-serif;
 	
 	min-height:100%; 
@@ -66,13 +66,13 @@ nav ul li a{
 	text-decoration: none;
 	display: inline-block;
 	padding: 5px 15px;
-	color: purple;
+	color: #4C234B;
 }
 nav ul li a:hover,
 footer ul li a:hover{
 	color:white;
 	font-weight: bold;
-	text-shadow: 2px 2px purple;
+	text-shadow: 2px 2px #4C234B;
 }
 footer {
 	width: 100%;
@@ -93,24 +93,38 @@ footer ul li a{
 	text-decoration: none;
 	display: inline-block;
 	padding: 5px 15px;
-	color: purple;
+	color: #4C234B;
 }
 #inicio{
 	display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
-	margin-bottom:40px;
+    width: 70%;
+	margin-bottom:30px;
 	margin-top:100px;
-	padding:140px 40px 40px 40px;
-	color:purple;
-	font-weight: bold;
-	font-size: 25px;
-	text-align: center;
+	padding:120px 10px 30px 10px;
+	color: #4C234B;
+	font-weight: ;
+}
+#inicio p {
+	margin-top:20px;
+	font-size: 22px;
+}
+#pright{
+	text-align:right;
+}
+#inicio h2 {
 	text-shadow: 2px 2px white;
+	text-align: center;
+}
+#imginicio{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 }
 .video{
-	margin-top:70px;
+	margin-top:50px;
 }
 #imguso{
 	margin-top:40px;
@@ -119,32 +133,48 @@ footer ul li a{
     margin-right: auto;
     width: 90%;
 }
+#lavado h1{
+	margin-top:60px;
+	text-align:center;
+	color: #4C234B;
+	font-weight: normal;
+	font-size: 40px;
+}
 #contact{
 	display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-	margin-bottom:40px;
+    width: 70%;
+	margin-bottom:20px;
 	margin-top:100px;
-	padding:140px 40px 40px 40px;
-	color:purple;
+	padding:140px 40px 30px 40px;
+	color: #4C234B;
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 20px;
 	text-align: center;
 	text-shadow: 2px 2px white;
+	
+}
+#contact a{
+	text-decoration: none;
+	color: #4C234B;
 }
 #comprar {
 	margin-bottom:20px;
-	margin-top:70px;
-	padding:100px 40px 20px 40px;
+	margin-top:100px;
+	padding:120px 40px 20px 40px;
 	
 }
 #comprar h1, h2{
-	color:purple;
+	color: #4C234B;
 	font-weight: bold;
 	text-shadow: 2px 2px white;
 	text-align:center;
 	
+}
+#comprar p {
+	color: #4C234B;
+	font-weight: bold;
 }
 #imgcomprar{
 	display: block;
@@ -187,9 +217,15 @@ footer ul li a{
 }
 #successMessage{
 	opacity: 0;
+	color: #4C234B;
+	text-shadow: 2px 2px white;
+	font: normal normal bold 17px Quicksand;
 }
 #errorMessage{
 	opacity: 0;
+	color: #4C234B;
+	text-shadow: 2px 2px white;
+	font: normal normal bold 20px Quicksand;
 }
 #wait{
 	opacity: 0;
@@ -198,13 +234,13 @@ input[type=text], select {
 	padding: 5px 10px;
     margin: 4px 0;
     display: inline-block;
-    border: 1px solid purple;
+    border: 1px solid #4C234B;
     border-radius: 4px;
     box-sizing: border-box;
 
 }
 #inputTitle{
-	color:purple;
+	color: #4C234B;
 	text-shadow: 2px 2px white;
 	font: normal normal bold 17px Quicksand;
 }
