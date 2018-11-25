@@ -4,7 +4,7 @@
 	<title>uniqas</title>
 	<link type="text/css" rel="stylesheet" href="style/core.css"/>
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-	<link rel="shortcut icon" type="image/x-icon" href="">
+	<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/hypodermic/uniqas/master/favicon.ico">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<script src="https://checkout.culqi.com/js/v3"></script>
 	<!-- Incluyendo .js de Culqi JS -->
